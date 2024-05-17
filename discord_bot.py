@@ -17,7 +17,7 @@ async def on_ready():
 @tasks.loop(minutes=1440)  # 24 hours in minutes
 async def send_message():
     channel = client.get_channel(CHANNEL_ID)
-    await channel.send("This is the message that will be sent every day.")
+    await channel.send("Daddy")
 
 @send_message.before_loop
 async def before_send_message():
