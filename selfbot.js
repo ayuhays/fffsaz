@@ -7,7 +7,11 @@ const token = process.env.DISCORD_TOKEN;
 
 const command = `ffmpeg -f lavfi -i anullsrc -ar 44100 -ac 2 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le pipe:1`;
 
-exec(command, (error, stdout, stderr) => {
+const options = {
+    maxBuffer: 1024 * 1024 * 10, // Set max buffer size to 10 MB
+};
+
+exec(command, options, (error, stdout, stderr) => {
     if (error) {
         console.error(`Error: ${error.message}`);
         return;
