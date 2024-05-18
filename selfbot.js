@@ -1,7 +1,7 @@
 // selfbot.js
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const { Client } = require('discord.js');
+const client = new Client();
 
 client.on('ready', async () => {
     console.log('Self-bot is ready');
