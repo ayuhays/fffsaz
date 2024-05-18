@@ -1,17 +1,22 @@
 // selfbot.js
 
-const { Client } = require('discord.js');
-const client = new Client();
+const { exec } = require('child_process');
 
-client.on('ready', async () => {
-    console.log('Self-bot is ready');
-    const channelId = process.env.CHANNEL_ID;
-    const channel = await client.channels.fetch(channelId);
-    if (!channel) return console.error('Invalid channel ID');
-    const connection = await channel.join();
-    console.log('Self-bot joined voice channel');
-    connection.voice.setSelfDeaf(true);
-    connection.voice.setSelfMute(true);
+const channelId = process.env.CHANNEL_ID;
+const token = process.env.DISCORD_TOKEN;
+
+const command = `ffmpeg -f lavfi -i anullsrc -ar 44100 -ac 2 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le -i /dev/zero -acodec pcm_s16le -ac 2 -ar 48000 -f s16le pipe:1`;
+
+exec(command, (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
 });
 
-client.login(process.env.DISCORD_TOKEN);
+console.log('Self-bot is ready');
