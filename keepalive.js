@@ -1,11 +1,14 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 4000;
+// keepalive.js
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const http = require('http');
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+const PORT = process.env.PORT || 3000;
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Discord self-bot is running!');
+});
+
+server.listen(PORT, () => {
+  console.log(`Keepalive server is running on port ${PORT}`);
+});
