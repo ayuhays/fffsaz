@@ -1,13 +1,15 @@
+// package.json
+
 {
   "name": "discord-selfbot",
   "version": "1.0.0",
-  "description": "Discord self-bot for staying in a voice channel",
+  "description": "Discord self-bot with keepalive",
   "main": "selfbot.js",
   "scripts": {
     "start": "node selfbot.js",
     "keepalive": "node keepalive.js"
   },
   "dependencies": {
-    "discord.js": "^13.3.1"
+    "express": "^4.17.1"
   }
 }
